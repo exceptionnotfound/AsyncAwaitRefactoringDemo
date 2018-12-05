@@ -1,0 +1,32 @@
+﻿@model List<LetMePutSomeAsyncInIt.Web.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>All Users</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Link</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink("View", "GetByID", new { id = user.ID })</td>
+                <td>@user.ID</td>
+                <td>@user.Name</td>
+                <td>@user.Phone</td>
+                <td>@user.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

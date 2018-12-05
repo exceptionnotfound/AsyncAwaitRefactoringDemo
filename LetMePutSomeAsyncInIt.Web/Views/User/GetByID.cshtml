@@ -1,0 +1,32 @@
+﻿@model LetMePutSomeAsyncInIt.Web.Models.User
+
+@{
+    ViewBag.Title = "GetByID";
+}
+
+<h2>User #@Model.ID</h2>
+
+<div>
+    <dl>
+        <dt>Name</dt>
+        <dd>@Model.Name</dd>
+        <dt>Username</dt>
+        <dd>@Model.Username</dd>
+        <dt>Email</dt>
+        <dd>@Model.Email</dd>
+        <dt>Phone</dt>
+        <dd>@Model.Phone</dd>
+        <dt>Website</dt>
+        <dd>@Model.Website</dd>
+        <dt>Address</dt>
+        <dd>
+            @Model.Address.StreetAddress<br/>
+            @Model.Address.City, @Model.Address.ZipCode<br/>
+            Latitude: @Model.Address.Geo.Latitude,
+            Longitude: @Model.Address.Geo.Longitude
+        </dd>
+        <dt>Company</dt>
+        <dd>@Model.Company.Name</dd>
+    </dl>
+    
+</div>

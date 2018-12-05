@@ -1,0 +1,23 @@
+﻿@model LetMePutSomeAsyncInIt.Web.Models.Post
+
+
+@{
+    ViewBag.Title = "GetByID";
+}
+
+<h2>Post #@Model.ID</h2>
+
+<div>
+    <dl>
+        <dt>User ID</dt>
+        <dd>@Model.UserID</dd>
+    </dl>
+    <dl>
+        <dt>Title</dt>
+        <dd>@Model.Title</dd>
+    </dl>
+    <dl>
+        <dt>Body</dt>
+        <dd>@Model.Body</dd>
+    </dl>
+</div>
