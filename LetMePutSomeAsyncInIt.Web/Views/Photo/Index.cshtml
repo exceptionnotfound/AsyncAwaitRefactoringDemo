@@ -1,0 +1,31 @@
+﻿@model List<LetMePutSomeAsyncInIt.Web.Models.Photo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Photos</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Link</th>
+            <th>ID</th>
+            <th>URL</th>
+            <th>Title</th>
+            <th>ThumbnailURL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink("View", "GetByID", new { id = post.ID })</td>
+                <td>@post.ID</td>
+                <td>@post.URL</td>
+                <td>@post.Title</td>
+                <td>@post.ThumbnailURL</td>
+            </tr>
+        }
+    </tbody>
+</table>

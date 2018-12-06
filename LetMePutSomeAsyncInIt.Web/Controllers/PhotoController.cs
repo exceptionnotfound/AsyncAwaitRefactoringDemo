@@ -7,32 +7,32 @@ using System.Web.Mvc;
 
 namespace LetMePutSomeAsyncInIt.Web.Controllers
 {
-    [RoutePrefix("User")]
-    public class UserController : Controller
+    [RoutePrefix("Photo")]
+    public class PhotoController : Controller
     {
-        private IUserRepository _userRepo;
+        private IPhotoRepository _photoRepo;
 
-        public UserController(IUserRepository userRepo)
+        public PhotoController(IPhotoRepository photoRepo)
         {
-            _userRepo = userRepo;
+            _photoRepo = photoRepo;
         }
 
         [HttpGet]
-        [Route("~/")]
         [Route("")]
-        [Route("Index")]
-        // GET: User
+        [Route("index")]
+        // GET: Photo
         public ActionResult Index()
         {
-            var users = _userRepo.GetAll();
-            return View(users);
+            var allPhotos = _photoRepo.GetAll();
+            return View(allPhotos);
         }
 
         [HttpGet]
         [Route("{id}")]
         public ActionResult GetByID(int id)
         {
-            return View(_userRepo.GetByID(id));
+            var photo = _photoRepo.GetByID(id);
+            return View(photo);
         }
     }
 }

@@ -16,5 +16,6 @@ namespace LetMePutSomeAsyncInIt.Web.Models
 
         public Address Address { get; set; }
         public Company Company { get; set; }
+        public List<Post> Posts { get; set; }
     }
 }

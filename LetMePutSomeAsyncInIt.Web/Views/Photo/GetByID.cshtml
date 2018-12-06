@@ -1,0 +1,13 @@
+﻿@model LetMePutSomeAsyncInIt.Web.Models.Photo
+@{
+    ViewBag.Title = "GetByID";
+}
+
+<h2>Photo #@Model.ID</h2>
+
+<dl>
+    <dt>Title</dt>
+    <dd>@Model.Title</dd>
+</dl>
+
+<img src="@Model.URL" />

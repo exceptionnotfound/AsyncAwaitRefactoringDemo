@@ -25,9 +25,13 @@ namespace LetMePutSomeAsyncInIt.Web.Repositories
         {
             using (WebClient client = new WebClient())
             {
-                var jsonPost = client.DownloadString("https://jsonplaceholder.typicode.com/users/" + id.ToString());
+                var userJson = client.DownloadString("https://jsonplaceholder.typicode.com/users/" + id.ToString());
+                var user = JsonConvert.DeserializeObject<User>(userJson);
 
-                return JsonConvert.DeserializeObject<User>(jsonPost);
+                var postsJson = client.DownloadString("https://jsonplaceholder.typicode.com/users/" + id.ToString() + "/posts");
+                user.Posts = JsonConvert.DeserializeObject<List<Post>>(postsJson);
+
+                return user;
             }
         }
     }

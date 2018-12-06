@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace LetMePutSomeAsyncInIt.Web.Controllers
 {
+    [RoutePrefix("Post")]
     public class PostController : Controller
     {
         private IPostRepository _postRepo;
@@ -17,11 +18,16 @@ namespace LetMePutSomeAsyncInIt.Web.Controllers
         }
 
         // GET: Post
+        [HttpGet]
+        [Route("")]
+        [Route("Index")]
         public ActionResult Index()
         {
             return View(_postRepo.GetAll());
         }
 
+        [HttpGet]
+        [Route("{id}")]
         public ActionResult GetByID(int id)
         {
             return View(_postRepo.GetByID(id));
