@@ -32,5 +32,15 @@ namespace LetMePutSomeAsyncInIt.Web.Repositories
                 return JsonConvert.DeserializeObject<Post>(jsonPost);
             }
         }
+
+        public List<Post> GetForUser(int userID)
+        {
+            using (WebClient client = new WebClient())
+            {
+                var jsonPost = client.DownloadString("https://jsonplaceholder.typicode.com/users/" + userID.ToString() + "/posts");
+
+                return JsonConvert.DeserializeObject<List<Post>>(jsonPost);
+            }
+        }
     }
 }

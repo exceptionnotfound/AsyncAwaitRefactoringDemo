@@ -20,15 +20,6 @@ namespace LetMePutSomeAsyncInIt.Web.Repositories
             }
         }
 
-        public List<Photo> GetByAlbum(int albumID)
-        {
-            using (WebClient client = new WebClient())
-            {
-                var photoJson = client.DownloadString("https://jsonplaceholder.typicode.com/albums/" + albumID.ToString() + "/photos");
-                return JsonConvert.DeserializeObject<List<Photo>>(photoJson);
-            }
-        }
-
         public Photo GetByID(int id)
         {
             using (WebClient client = new WebClient())

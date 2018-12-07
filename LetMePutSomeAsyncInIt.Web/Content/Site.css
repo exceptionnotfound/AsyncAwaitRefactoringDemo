@@ -22,3 +22,8 @@ select,
 textarea {
     max-width: 280px;
 }
+
+th, td {
+    border:solid 1px black;
+    padding:2px;
+}

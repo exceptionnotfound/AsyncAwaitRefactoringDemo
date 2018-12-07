@@ -1,0 +1,35 @@
+﻿@model LetMePutSomeAsyncInIt.Web.Models.Album
+@{
+    ViewBag.Title = "Album #" + Model.ID;
+}
+
+<h2>Album #@Model.ID</h2>
+
+<dl>
+    <dt>ID</dt>
+    <dd>@Model.ID</dd>
+    <dt>Title</dt>
+    <dd>@Model.Title</dd>
+</dl>
+
+<h3>@Model.Photos.Count Photos</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Link</th>
+            <th>ID</th>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var photo in Model.Photos)
+        {
+            <tr>
+                <td>@Html.ActionLink("View", "GetByID", new { id = photo.ID })</td>
+                <td>@photo.ID</td>
+                <td>@photo.Title</td>
+            </tr>
+        }
+    </tbody>
+</table>

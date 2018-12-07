@@ -1,0 +1,29 @@
+﻿@model List<LetMePutSomeAsyncInIt.Web.Models.Album>
+
+@{
+    ViewBag.Title = "Albums";
+}
+
+<h2>Albums</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Link</th>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var album in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink("View", "GetByID", new { id = album.ID })</td>
+                <td>@album.ID</td>
+                <td>@album.UserID</td>
+                <td>@album.Title</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -11,10 +11,14 @@ namespace LetMePutSomeAsyncInIt.Web.Controllers
     public class UserController : Controller
     {
         private IUserRepository _userRepo;
+        private IAlbumRepository _albumRepo;
+        private IPostRepository _postRepo;
 
-        public UserController(IUserRepository userRepo)
+        public UserController(IUserRepository userRepo, IAlbumRepository albumRepo, IPostRepository postRepo)
         {
             _userRepo = userRepo;
+            _albumRepo = albumRepo;
+            _postRepo = postRepo;
         }
 
         [HttpGet]
@@ -32,7 +36,11 @@ namespace LetMePutSomeAsyncInIt.Web.Controllers
         [Route("{id}")]
         public ActionResult GetByID(int id)
         {
-            return View(_userRepo.GetByID(id));
+            var user = _userRepo.GetByID(id);
+            user.Albums = _albumRepo.GetForUser(user.ID);
+            user.Posts = _postRepo.GetForUser(user.ID);
+
+            return View(user);
         }
     }
 }

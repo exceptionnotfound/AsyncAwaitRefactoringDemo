@@ -10,7 +10,5 @@ namespace LetMePutSomeAsyncInIt.Web.Repositories.Interfaces
     {
         Photo GetByID(int id);
         List<Photo> GetAll();
-
-        List<Photo> GetByAlbum(int albumID);
     }
 }

@@ -17,5 +17,12 @@ namespace LetMePutSomeAsyncInIt.Web.Models
         public Address Address { get; set; }
         public Company Company { get; set; }
         public List<Post> Posts { get; set; }
+        public List<Album> Albums { get; set; }
+
+        public User()
+        {
+            Posts = new List<Post>();
+            Albums = new List<Album>();
+        }
     }
 }
