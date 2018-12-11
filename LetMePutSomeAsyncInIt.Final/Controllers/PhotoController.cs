@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -21,17 +22,17 @@ namespace LetMePutSomeAsyncInIt.Final.Controllers
         [Route("")]
         [Route("index")]
         // GET: Photo
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var allPhotos = _photoRepo.GetAll();
+            var allPhotos = await _photoRepo.GetAll();
             return View(allPhotos);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult GetByID(int id)
+        public async Task<ActionResult> GetByID(int id)
         {
-            var photo = _photoRepo.GetByID(id);
+            var photo = await _photoRepo.GetByID(id);
             return View(photo);
         }
     }

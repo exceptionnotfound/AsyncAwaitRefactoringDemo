@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -21,17 +23,19 @@ namespace LetMePutSomeAsyncInIt.Final.Controllers
         [Route("")]
         [Route("index")]
         // GET: Album
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            var albums = _albumRepo.GetAll();
+            var albums = await _albumRepo.GetAll();
             return View(albums);
         }
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult GetByID(int id)
+        public async Task<ActionResult> GetByID(int id)
         {
-            var album = _albumRepo.GetByID(id);
+            CancellationTokenSource source = new CancellationTokenSource();
+            source.CancelAfter(1000);
+            var album = await _albumRepo.GetByID(id, source.Token);
             return View(album);
         }
     }

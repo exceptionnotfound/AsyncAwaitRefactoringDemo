@@ -2,15 +2,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace LetMePutSomeAsyncInIt.Final.Repositories.Interfaces
 {
     public interface IAlbumRepository
     {
-        Album GetByID(int id);
-        List<Album> GetForUser(int userID);
+        Task<Album> GetByID(int id, CancellationToken token);
+        Task<List<Album>> GetForUser(int userID);
 
-        List<Album> GetAll();
+        Task<List<Album>> GetAll();
     }
 }

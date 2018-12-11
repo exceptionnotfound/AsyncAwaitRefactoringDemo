@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -34,10 +35,10 @@ namespace LetMePutSomeAsyncInIt.Final.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public ActionResult GetByID(int id)
+        public async Task<ActionResult> GetByID(int id)
         {
             var user = _userRepo.GetByID(id);
-            user.Albums = _albumRepo.GetForUser(user.ID);
+            user.Albums = await _albumRepo.GetForUser(user.ID);
             user.Posts = _postRepo.GetForUser(user.ID);
 
             return View(user);

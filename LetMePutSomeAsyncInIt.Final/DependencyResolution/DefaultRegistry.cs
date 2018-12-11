@@ -16,6 +16,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace LetMePutSomeAsyncInIt.Final.DependencyResolution {
+    using LetMePutSomeAsyncInIt.Final.Repositories.Interfaces;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
 	
