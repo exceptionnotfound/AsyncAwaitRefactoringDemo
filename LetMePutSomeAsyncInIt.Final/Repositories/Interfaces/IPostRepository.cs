@@ -9,8 +9,8 @@ namespace LetMePutSomeAsyncInIt.Final.Repositories.Interfaces
 {
     public interface IPostRepository
     {
-        List<Post> GetAll();
-        Post GetByID(int id);
-        List<Post> GetForUser(int userID);
+        Task<List<Post>> GetAll();
+        Task<Post> GetByID(int id);
+        Task<List<Post>> GetForUser(int userID);
     }
 }

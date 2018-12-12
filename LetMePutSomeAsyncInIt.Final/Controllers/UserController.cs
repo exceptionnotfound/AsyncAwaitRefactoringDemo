@@ -39,7 +39,7 @@ namespace LetMePutSomeAsyncInIt.Final.Controllers
         {
             var user = _userRepo.GetByID(id);
             user.Albums = await _albumRepo.GetForUser(user.ID);
-            user.Posts = _postRepo.GetForUser(user.ID);
+            user.Posts = await _postRepo.GetForUser(user.ID);
 
             return View(user);
         }

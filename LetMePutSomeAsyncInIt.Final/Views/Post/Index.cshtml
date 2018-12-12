@@ -6,6 +6,11 @@
 
 <h2>All Posts</h2>
 
+@if(!string.IsNullOrWhiteSpace(ViewBag.ExceptionMessage))
+{
+    <span>@ViewBag.ExceptionMessage</span>
+}
+
 <table>
     <thead>
         <tr>

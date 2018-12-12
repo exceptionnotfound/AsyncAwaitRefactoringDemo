@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace LetMePutSomeAsyncInIt.Web.Repositories
@@ -13,31 +14,31 @@ namespace LetMePutSomeAsyncInIt.Web.Repositories
 
     public class PostRepository : IPostRepository
     {
-        public List<Post> GetAll()
+        public async Task<List<Post>> GetAll()
         {
-            using (WebClient client = new WebClient())
+            using (HttpClient client = new HttpClient())
             {
-                var allPosts = client.DownloadString("https://jsonplaceholder.typicode.com/posts");
+                var allPosts = await client.GetStringAsync("https://jsonplaceholder.typicode.com/posts");
 
                 return JsonConvert.DeserializeObject<List<Post>>(allPosts);
             }
         }
 
-        public Post GetByID(int id)
+        public async Task<Post> GetByID(int id)
         {
-            using (WebClient client = new WebClient())
+            using (HttpClient client = new HttpClient())
             {
-                var jsonPost = client.DownloadString("https://jsonplaceholder.typicode.com/posts/" + id.ToString());
+                var jsonPost = await client.GetStringAsync("https://jsonplaceholder.typicode.com/posts/" + id.ToString());
 
                 return JsonConvert.DeserializeObject<Post>(jsonPost);
             }
         }
 
-        public List<Post> GetForUser(int userID)
+        public async Task<List<Post>> GetForUser(int userID)
         {
-            using (WebClient client = new WebClient())
+            using (HttpClient client = new HttpClient())
             {
-                var jsonPost = client.DownloadString("https://jsonplaceholder.typicode.com/users/" + userID.ToString() + "/posts");
+                var jsonPost = await client.GetStringAsync("https://jsonplaceholder.typicode.com/users/" + userID.ToString() + "/posts");
 
                 return JsonConvert.DeserializeObject<List<Post>>(jsonPost);
             }
