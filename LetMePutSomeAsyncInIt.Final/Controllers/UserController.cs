@@ -37,9 +37,15 @@ namespace LetMePutSomeAsyncInIt.Final.Controllers
         [Route("{id}")]
         public async Task<ActionResult> GetByID(int id)
         {
-            var user = _userRepo.GetByID(id);
-            user.Albums = await _albumRepo.GetForUser(user.ID);
-            user.Posts = await _postRepo.GetForUser(user.ID);
+            var userTask = _userRepo.GetByID(id);
+            var albumTask = _albumRepo.GetForUser(id);
+            var postTask = _postRepo.GetForUser(id);
+
+            await Task.WhenAll(userTask, albumTask, postTask);
+
+            var user = await userTask;
+            user.Albums = await albumTask;
+            user.Posts = await postTask;
 
             return View(user);
         }

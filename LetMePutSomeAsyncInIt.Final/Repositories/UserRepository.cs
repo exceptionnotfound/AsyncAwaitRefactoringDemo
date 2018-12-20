@@ -5,27 +5,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace LetMePutSomeAsyncInIt.Web.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public List<User> GetAll()
+        public async Task<List<User>> GetAll()
         {
-            using (WebClient client = new WebClient())
+            using (HttpClient client = new HttpClient())
             {
-                var jsonPost = client.DownloadString("https://jsonplaceholder.typicode.com/users");
+                var jsonPost = await client.GetStringAsync("https://jsonplaceholder.typicode.com/users");
 
                 return JsonConvert.DeserializeObject<List<User>>(jsonPost);
             }
         }
 
-        public User GetByID(int id)
+        public async Task<User> GetByID(int id)
         {
-            using (WebClient client = new WebClient())
+            using (HttpClient client = new HttpClient())
             {
-                var userJson = client.DownloadString("https://jsonplaceholder.typicode.com/users/" + id.ToString());
+                var userJson = await client.GetStringAsync("https://jsonplaceholder.typicode.com/users/" + id.ToString());
                 var user = JsonConvert.DeserializeObject<User>(userJson);
 
                 return user;

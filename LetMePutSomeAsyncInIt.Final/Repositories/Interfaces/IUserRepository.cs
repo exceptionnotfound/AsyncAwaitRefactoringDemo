@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace LetMePutSomeAsyncInIt.Final.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        List<User> GetAll();
-        User GetByID(int id);
+        Task<List<User>> GetAll();
+        Task<User> GetByID(int id);
     }
 }
