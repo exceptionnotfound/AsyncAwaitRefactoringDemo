@@ -26,25 +26,14 @@ namespace LetMePutSomeAsyncInIt.Web.Repositories
 
         public async Task<Album> GetByID(int id, CancellationToken token)
         {
-            //First, using a random number 100-2000, determine how many milliseconds this will take.
-            //This is an example only.  In the real world, of course we will not impose wait times.
-            Random rand = new Random(DateTime.Now.Millisecond);
-            int finalDelay = rand.Next(100, 2000);
-            int totalWaited = 100;
-
-            while(totalWaited < finalDelay)
-            {
-                await Task.Delay(100);
-                totalWaited += 100;
-                token.ThrowIfCancellationRequested();
-            }
-
             using (HttpClient client = new HttpClient())
             {
-                var albumJson = await client.GetStringAsync("https://jsonplaceholder.typicode.com/albums/" + id.ToString());
+                var albumResponse = await client.GetAsync("https://jsonplaceholder.typicode.com/albums/" + id.ToString(), token);
+                var albumJson = await albumResponse.Content.ReadAsStringAsync();
                 var album = JsonConvert.DeserializeObject<Album>(albumJson);
 
-                var photosJson = await client.GetStringAsync("https://jsonplaceholder.typicode.com/albums/" + id.ToString() + "/photos");
+                var photosResponse = await client.GetAsync("https://jsonplaceholder.typicode.com/albums/" + id.ToString() + "/photos", token);
+                var photosJson = await photosResponse.Content.ReadAsStringAsync();
                 album.Photos = JsonConvert.DeserializeObject<List<Photo>>(photosJson);
 
                 return album;

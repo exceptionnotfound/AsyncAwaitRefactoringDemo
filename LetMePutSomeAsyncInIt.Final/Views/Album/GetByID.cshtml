@@ -26,7 +26,7 @@
         @foreach (var photo in Model.Photos)
         {
             <tr>
-                <td>@Html.ActionLink("View", "GetByID", new { id = photo.ID })</td>
+                <td>@Html.ActionLink("View", "GetByID", "Photo", new { id = photo.ID }, null)</td>
                 <td>@photo.ID</td>
                 <td>@photo.Title</td>
             </tr>
