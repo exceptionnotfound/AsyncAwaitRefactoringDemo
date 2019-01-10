@@ -28,7 +28,7 @@ namespace LetMePutSomeAsyncInIt.Web.Repositories
                 var albumJson = client.DownloadString("https://jsonplaceholder.typicode.com/albums/" + id.ToString());
                 var album = JsonConvert.DeserializeObject<Album>(albumJson);
 
-                var photosJson = client.DownloadString("https://jsonplaceholder.typicode.com/albums/" + id.ToString() + "/photos");
+                var photosJson = client.DownloadString("https://jsonplaceholder.typicode.com/photos?albumId=" + id.ToString());
                 album.Photos = JsonConvert.DeserializeObject<List<Photo>>(photosJson);
 
                 return album;
@@ -39,7 +39,7 @@ namespace LetMePutSomeAsyncInIt.Web.Repositories
         {
             using (WebClient client = new WebClient())
             {
-                var albumJson = client.DownloadString("https://jsonplaceholder.typicode.com/users/" + userID.ToString() + "/albums");
+                var albumJson = client.DownloadString("https://jsonplaceholder.typicode.com/albums?userId=" + userID.ToString());
                 var albums = JsonConvert.DeserializeObject<List<Album>>(albumJson);
 
                 return albums;

@@ -37,7 +37,7 @@ namespace LetMePutSomeAsyncInIt.Web.Repositories
         {
             using (WebClient client = new WebClient())
             {
-                var jsonPost = client.DownloadString("https://jsonplaceholder.typicode.com/users/" + userID.ToString() + "/posts");
+                var jsonPost = client.DownloadString("https://jsonplaceholder.typicode.com/posts?userId=" + userID.ToString());
 
                 return JsonConvert.DeserializeObject<List<Post>>(jsonPost);
             }

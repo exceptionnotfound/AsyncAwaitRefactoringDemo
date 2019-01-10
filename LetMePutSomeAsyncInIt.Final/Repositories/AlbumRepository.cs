@@ -32,7 +32,7 @@ namespace LetMePutSomeAsyncInIt.Web.Repositories
                 var albumJson = await albumResponse.Content.ReadAsStringAsync();
                 var album = JsonConvert.DeserializeObject<Album>(albumJson);
 
-                var photosResponse = await client.GetAsync("https://jsonplaceholder.typicode.com/albums/" + id.ToString() + "/photos", token);
+                var photosResponse = await client.GetAsync("https://jsonplaceholder.typicode.com/photos?albumId=" + id.ToString(), token);
                 var photosJson = await photosResponse.Content.ReadAsStringAsync();
                 album.Photos = JsonConvert.DeserializeObject<List<Photo>>(photosJson);
 

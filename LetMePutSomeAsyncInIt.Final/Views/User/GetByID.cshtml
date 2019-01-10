@@ -44,7 +44,7 @@
             @foreach (var post in Model.Posts)
             {
                 <tr>
-                    <td>@Html.ActionLink("View", "GetByID", new { id = post.ID })</td>
+                    <td>@Html.ActionLink("View", "GetByID", "Post", null, new { id = post.ID })</td>
                     <td>@post.ID</td>
                     <td>@post.UserID</td>
                     <td>@post.Title</td>
@@ -68,7 +68,7 @@
             @foreach (var album in Model.Albums)
             {
                 <tr>
-                    <td>@Html.ActionLink("View", "GetByID", new { id = album.ID })</td>
+                    <td>@Html.ActionLink("View", "GetByID", "Album", null, new { id = album.ID })</td>
                     <td>@album.ID</td>
                     <td>@album.UserID</td>
                     <td>@album.Title</td>
