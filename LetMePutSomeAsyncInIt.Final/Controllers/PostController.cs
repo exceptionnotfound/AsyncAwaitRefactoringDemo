@@ -33,7 +33,7 @@ namespace LetMePutSomeAsyncInIt.Final.Controllers
         public async Task<ActionResult> GetByID(int id)
         {
             var post = await _postRepo.GetByID(id);
-            return View(_postRepo.GetByID(id));
+            return View(post);
         }
     }
 }
