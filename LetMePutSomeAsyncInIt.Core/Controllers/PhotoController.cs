@@ -18,14 +18,14 @@ namespace LetMePutSomeAsyncInIt.Core.Controllers
         }
 
         [HttpGet("")]
-        public ActionResult Index()
+        public IActionResult Index()
         {
             var allPhotos = _photoRepo.GetAll();
             return View(allPhotos);
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetByID(int id)
+        public IActionResult GetByID(int id)
         {
             var photo = _photoRepo.GetByID(id);
             return View(photo);

@@ -16,9 +16,8 @@ namespace LetMePutSomeAsyncInIt.Core.Repositories
         {
             using (HttpClient client = new HttpClient())
             {
-                var jsonPost = client.GetAsync("https://jsonplaceholder.typicode.com/users").Result.Content.ReadAsStringAsync().Result;
-
-                return JsonConvert.DeserializeObject<List<User>>(jsonPost);
+                var user = client.GetStringAsync("https://jsonplaceholder.typicode.com/users").Result;
+                return JsonConvert.DeserializeObject<List<User>>(user);
             }
         }
 
@@ -26,10 +25,8 @@ namespace LetMePutSomeAsyncInIt.Core.Repositories
         {
             using (HttpClient client = new HttpClient())
             {
-                var userJson = client.GetAsync("https://jsonplaceholder.typicode.com/users/" + id.ToString()).Result.Content.ReadAsStringAsync().Result;
-                var user = JsonConvert.DeserializeObject<User>(userJson);
-
-                return user;
+                var user = client.GetStringAsync("https://jsonplaceholder.typicode.com/users/" + id.ToString()).Result;
+                return JsonConvert.DeserializeObject<User>(user);
             }
         }
     }

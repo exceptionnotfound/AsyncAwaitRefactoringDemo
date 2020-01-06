@@ -15,9 +15,8 @@ namespace LetMePutSomeAsyncInIt.Core.Repositories
         {
             using (HttpClient client = new HttpClient())
             {
-                var albumTask = Task.Run(() => client.GetAsync("https://jsonplaceholder.typicode.com/albums"));
-
-                return JsonConvert.DeserializeObject<List<Album>>(albumTask.Result.Content.ReadAsStringAsync().Result);
+                var album = client.GetStringAsync("https://jsonplaceholder.typicode.com/albums").Result;
+                return JsonConvert.DeserializeObject<List<Album>>(album);
             }
         }
 
@@ -39,10 +38,8 @@ namespace LetMePutSomeAsyncInIt.Core.Repositories
         {
             using (HttpClient client = new HttpClient())
             {
-                var albumJson = client.GetAsync("https://jsonplaceholder.typicode.com/albums?userId=" + userID.ToString()).Result.Content.ReadAsStringAsync().Result;
-                var albums = JsonConvert.DeserializeObject<List<Album>>(albumJson);
-
-                return albums;
+                var album = client.GetStringAsync("https://jsonplaceholder.typicode.com/albums?userId=" + userID.ToString()).Result;
+                return JsonConvert.DeserializeObject<List<Album>>(album);
             }
         }
     }

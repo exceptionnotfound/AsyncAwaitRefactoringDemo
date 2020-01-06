@@ -13,8 +13,8 @@ namespace LetMePutSomeAsyncInIt.Core.Repositories
         {
             using (HttpClient client = new HttpClient())
             {
-                var photoJson = client.GetAsync("https://jsonplaceholder.typicode.com/photos/").Result.Content.ReadAsStringAsync().Result;
-                return JsonConvert.DeserializeObject<List<Photo>>(photoJson);
+                var photo = client.GetStringAsync("https://jsonplaceholder.typicode.com/photos/").Result;
+                return JsonConvert.DeserializeObject<List<Photo>>(photo);
             }
         }
 
@@ -22,7 +22,7 @@ namespace LetMePutSomeAsyncInIt.Core.Repositories
         {
             using (HttpClient client = new HttpClient())
             {
-                var photoJson = client.GetAsync("https://jsonplaceholder.typicode.com/photos/" + id.ToString()).Result.Content.ReadAsStringAsync().Result;
+                var photoJson = client.GetStringAsync("https://jsonplaceholder.typicode.com/photos/" + id.ToString()).Result;
                 return JsonConvert.DeserializeObject<Photo>(photoJson);
             }
         }

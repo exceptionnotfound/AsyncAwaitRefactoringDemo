@@ -25,14 +25,14 @@ namespace LetMePutSomeAsyncInIt.Core.Controllers
         [Route("~/")]
         [Route("")]
         [Route("Index")]
-        public ActionResult Index()
+        public IActionResult Index()
         {
             var users = _userRepo.GetAll();
             return View(users);
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetByID(int id)
+        public IActionResult GetByID(int id)
         {
             var user = _userRepo.GetByID(id);
             user.Albums = _albumRepo.GetForUser(user.ID);

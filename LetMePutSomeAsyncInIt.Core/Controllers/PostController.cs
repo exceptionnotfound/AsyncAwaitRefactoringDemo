@@ -18,13 +18,13 @@ namespace LetMePutSomeAsyncInIt.Core.Controllers
         }
 
         [HttpGet("")]
-        public ActionResult Index()
+        public IActionResult Index()
         {
             return View(_postRepo.GetAll());
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetByID(int id)
+        public IActionResult GetByID(int id)
         {
             return View(_postRepo.GetByID(id));
         }
