@@ -1,0 +1,38 @@
+﻿@model List<LetMePutSomeAsyncInIt.Core.Models.Post>
+
+@{
+    ViewBag.Title = "Posts";
+}
+
+<h2>All Posts</h2>
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.ExceptionMessage))
+{
+    <span>@ViewBag.ExceptionMessage</span>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Link</th>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Title</th>
+            <th>Body</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Post" asp-action="GetByID" asp-route-id="@post.ID">View</a>
+                </td>
+                <td>@post.ID</td>
+                <td>@post.UserID</td>
+                <td>@post.Title</td>
+                <td>@post.Body</td>
+            </tr>
+        }
+    </tbody>
+</table>

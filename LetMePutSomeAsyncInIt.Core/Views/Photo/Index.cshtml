@@ -1,0 +1,33 @@
+﻿@model List<LetMePutSomeAsyncInIt.Core.Models.Photo>
+
+@{
+    ViewBag.Title = "Photos";
+}
+
+<h2>Photos</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Link</th>
+            <th>ID</th>
+            <th>URL</th>
+            <th>Title</th>
+            <th>ThumbnailURL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var post in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-controller="Photo", asp-action="GetByID" asp-route-id="@post.ID">View</a>
+                </td>
+                <td>@post.ID</td>
+                <td>@post.URL</td>
+                <td>@post.Title</td>
+                <td>@post.ThumbnailURL</td>
+            </tr>
+        }
+    </tbody>
+</table>
