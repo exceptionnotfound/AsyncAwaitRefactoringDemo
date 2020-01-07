@@ -17,9 +17,7 @@ namespace LetMePutSomeAsyncInIt.Core.Controllers
             _albumRepo = albumRepo;
         }
 
-        [HttpGet]
-        [Route("")]
-        [Route("index")]
+        [HttpGet("")]
         // GET: Album
         public IActionResult Index()
         {
@@ -27,8 +25,7 @@ namespace LetMePutSomeAsyncInIt.Core.Controllers
             return View(albums);
         }
 
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetByID(int id)
         {
             var album = _albumRepo.GetByID(id);
