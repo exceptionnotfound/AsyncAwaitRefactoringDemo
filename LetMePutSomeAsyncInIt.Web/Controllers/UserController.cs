@@ -25,7 +25,6 @@ namespace LetMePutSomeAsyncInIt.Web.Controllers
         [Route("~/")]
         [Route("")]
         [Route("Index")]
-        // GET: User
         public ActionResult Index()
         {
             var users = _userRepo.GetAll();

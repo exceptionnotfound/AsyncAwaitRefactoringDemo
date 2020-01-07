@@ -18,7 +18,6 @@ namespace LetMePutSomeAsyncInIt.Core.Controllers
         }
 
         [HttpGet("")]
-        // GET: Album
         public IActionResult Index()
         {
             var albums = _albumRepo.GetAll();

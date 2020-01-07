@@ -20,7 +20,6 @@ namespace LetMePutSomeAsyncInIt.Web.Controllers
         [HttpGet]
         [Route("")]
         [Route("index")]
-        // GET: Photo
         public ActionResult Index()
         {
             var allPhotos = _photoRepo.GetAll();

@@ -17,7 +17,6 @@ namespace LetMePutSomeAsyncInIt.Web.Controllers
             _postRepo = postRepo;
         }
 
-        // GET: Post
         [HttpGet]
         [Route("")]
         [Route("Index")]

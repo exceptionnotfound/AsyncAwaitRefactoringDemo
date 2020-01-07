@@ -13,7 +13,7 @@ namespace LetMePutSomeAsyncInIt.Core.Repositories
         {
             using (HttpClient client = new HttpClient())
             {
-                var photo = Task.Run(() => client.GetStringAsync("..."));
+                var photo = Task.Run(() => client.GetStringAsync("https://jsonplaceholder.typicode.com/photos/"));
                 return JsonConvert.DeserializeObject<List<Photo>>(photo.Result);
             }
         }
