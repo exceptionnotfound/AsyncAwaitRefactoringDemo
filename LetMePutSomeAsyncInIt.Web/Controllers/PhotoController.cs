@@ -22,7 +22,7 @@ namespace LetMePutSomeAsyncInIt.Web.Controllers
         [Route("index")]
         public ActionResult Index()
         {
-            var allPhotos = _photoRepo.GetAll();
+            var allPhotos = _photoRepo.GetAll().Result;
             return View(allPhotos);
         }
 

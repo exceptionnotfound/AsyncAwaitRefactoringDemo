@@ -5,26 +5,28 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace LetMePutSomeAsyncInIt.Web.Repositories
 {
     public class PhotoRepository : IPhotoRepository
     {
-        public List<Photo> GetAll()
+        public async Task<List<Photo>> GetAll()
         {
-            using (WebClient client = new WebClient())
+            using (HttpClient client = new HttpClient())
             {
-                var photoJson = client.DownloadString("https://jsonplaceholder.typicode.com/photos");
+                var photoJson = await client.GetStringAsync("https://jsonplaceholder.typicode.com/photos");
                 return JsonConvert.DeserializeObject<List<Photo>>(photoJson);
             }
         }
 
-        public Photo GetByID(int id)
+        public async Task<Photo> GetByID(int id)
         {
-            using (WebClient client = new WebClient())
+            using (HttpClient client = new HttpClient())
             {
-                var photoJson = client.DownloadString("https://jsonplaceholder.typicode.com/photos/" + id.ToString());
+                var photoJson = await client.GetStringAsync("https://jsonplaceholder.typicode.com/photos/" + id.ToString());
                 return JsonConvert.DeserializeObject<Photo>(photoJson);
             }
         }
